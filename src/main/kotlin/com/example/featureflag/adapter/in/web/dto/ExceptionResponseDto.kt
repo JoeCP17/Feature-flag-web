@@ -1,4 +1,4 @@
-package com.example.featureflag.adapter.web.`in`.dto
+package com.example.featureflag.adapter.`in`.web.dto
 
 import org.springframework.http.HttpStatus
 

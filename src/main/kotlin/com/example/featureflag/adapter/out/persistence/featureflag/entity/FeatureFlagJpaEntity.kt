@@ -1,6 +1,6 @@
-package com.example.featureflag.adapter.web.out.featureflag.entity
+package com.example.featureflag.adapter.out.persistence.featureflag.entity
 
-import com.example.featureflag.adapter.web.out.base.BaseJpaEntity
+import com.example.featureflag.adapter.out.persistence.base.BaseJpaEntity
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 

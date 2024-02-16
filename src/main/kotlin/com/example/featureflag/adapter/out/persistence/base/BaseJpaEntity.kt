@@ -1,4 +1,4 @@
-package com.example.featureflag.adapter.web.out.base
+package com.example.featureflag.adapter.out.persistence.base
 
 import jakarta.persistence.EntityListeners
 import jakarta.persistence.MappedSuperclass

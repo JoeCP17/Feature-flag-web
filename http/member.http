@@ -1,0 +1,12 @@
+### 멤버 생성
+POST http://localhost:8080/members/register?version=1.0
+Content-Type: application/json
+
+{
+  "name": "Joe Kim"
+}
+
+
+### 멤버조회
+GET http://localhost:8080/members/1?version=1.0
+Content-Type: application/json

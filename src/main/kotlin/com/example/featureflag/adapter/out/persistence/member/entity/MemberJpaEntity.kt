@@ -1,6 +1,6 @@
-package com.example.featureflag.adapter.web.out.member.entity
+package com.example.featureflag.adapter.out.persistence.member.entity
 
-import com.example.featureflag.adapter.web.out.base.BaseJpaEntity
+import com.example.featureflag.adapter.out.persistence.base.BaseJpaEntity
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -8,8 +8,7 @@ import jakarta.persistence.Id
 
 @Entity
 class MemberJpaEntity(
-    name: String,
-    email: String
+    name: String
 ): BaseJpaEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
