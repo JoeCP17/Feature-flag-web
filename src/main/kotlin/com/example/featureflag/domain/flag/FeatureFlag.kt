@@ -10,6 +10,10 @@ class FeatureFlag(
 ) {
     private var activeFlag: Boolean = active
 
+    init {
+        require(name.isNotBlank()) { "이름에 현재 빈값이 들어있습니다." }
+    }
+
     fun statusUpdate(): FeatureFlag  = FeatureFlag(
         id = this.id,
         name = this.name,

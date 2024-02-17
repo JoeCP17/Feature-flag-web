@@ -27,7 +27,7 @@ class FeatureFlagController(
         )
     }
 
-    @PatchMapping("/modify/{id}")
+    @PatchMapping("/modify/active/{id}")
     fun modifyFeatureFlag(@PathVariable id: Long): BaseResponseDto<FeatureFlagResponse> {
         val response = requestFeatureFlagUsecase.modifyActive(id)
 

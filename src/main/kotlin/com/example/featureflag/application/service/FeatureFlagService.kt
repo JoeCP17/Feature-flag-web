@@ -11,6 +11,12 @@ import org.springframework.stereotype.Service
 class FeatureFlagService(
     private val featureFlagPersistencePort: FeatureFlagPersistencePort
 ) : RequestFeatureFlagUsecase {
+
+    @Transactional
+    override fun isFeatureFlagActiveByName(featureFlagName: String): Boolean {
+        return featureFlagPersistencePort.isActiveByName(featureFlagName)
+    }
+
     @Transactional
     override fun create(requestFeatureFlagCommand: RequestFeatureFlagCommand): FeatureFlagResponse {
         val requestFeatureFlag = requestFeatureFlagCommand.toDomainByName()

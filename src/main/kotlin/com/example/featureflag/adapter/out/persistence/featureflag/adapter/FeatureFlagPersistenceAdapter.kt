@@ -12,6 +12,12 @@ import java.lang.IllegalArgumentException
 class FeatureFlagPersistenceAdapter(
     private val featureFlagJpaRepository: FeatureFlagJpaRepository
 ): FeatureFlagPersistencePort {
+    override fun isActiveByName(featureFlagName: String): Boolean {
+        val featureFlagJpaEntity = featureFlagJpaRepository.findByName(featureFlagName)
+            .orElseThrow { throw IllegalArgumentException(NOT_FOUNR_MESSAGE) }
+
+        return featureFlagJpaEntity.activeFlag
+    }
 
     @Transactional(readOnly = true)
     override fun findById(id: Long): FeatureFlag {
