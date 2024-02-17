@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>API Feature Flag 관리 페이지</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1>API Feature Flag 관리 페이지</h1>
+<table id="featureFlagsTable">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>Toggle</th>
+    <th>생성일</th>
+    <th>작업</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  $(document).ready(function () {
+    fetchFeatureFlags();
+
+    $('#featureFlagsTable').on('click', '.toggle-feature', function () {
+      const featureId = $(this).data('id');
+      toggleFeature(featureId);
+    });
+
+    $('#featureFlagsTable').on('click', '.delete-feature', function () {
+      const featureId = $(this).data('id');
+      deleteFeature(featureId);
+    });
+  });
+
+  function fetchFeatureFlags() {
+    $.ajax({
+      url: '/api/v1/feature-flag/list',
+      type: 'GET',
+      success: function (response) {
+        const featureFlags = response.data;
+        const tableBody = $('#featureFlagsTable tbody');
+        tableBody.empty();
+        featureFlags.forEach(function (featureFlag) {
+          tableBody.append(
+              '<tr>' +
+              '<td>' + featureFlag.id + '</td>' +
+              '<td>' + featureFlag.name + '</td>' +
+              '<td><button class="toggle-feature" data-id="' + featureFlag.id + '">' +
+              (featureFlag.active ? 'Deactivate' : 'Activate') +
+              '</button></td>' +
+              '<td>' + featureFlag.createdAt + '</td>' +
+              '<td><button class="delete-feature" data-id="' + featureFlag.id + '">삭제</button></td>' +
+              '</tr>'
+          );
+        });
+      }
+    });
+  }
+
+  function toggleFeature(featureId) {
+    $.ajax({
+      url: '/api/v1/feature-flag/' + featureId,
+      type: 'PUT', // or 'POST' if your API requires
+      success: function () {
+        fetchFeatureFlags(); // Reload the list
+      },
+      error: function () {
+        alert('Feature flag toggle failed.');
+      }
+    });
+  }
+
+  function deleteFeature(featureId) {
+    $.ajax({
+      url: '/api/v1/delete/' + featureId,
+      type: 'DELETE',
+      success: function () {
+        fetchFeatureFlags(); // Reload the list
+      },
+      error: function () {
+        alert('Feature flag deletion failed.');
+      }
+    });
+  }
+  /*]]>*/
+</script>
+
+</body>
+</html>

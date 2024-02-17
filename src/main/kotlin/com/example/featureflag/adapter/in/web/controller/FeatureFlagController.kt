@@ -5,6 +5,7 @@ import com.example.featureflag.application.dto.request.RequestFeatureFlagCommand
 import com.example.featureflag.application.dto.response.FeatureFlagResponse
 import com.example.featureflag.application.port.`in`.RequestFeatureFlagUsecase
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -17,6 +18,15 @@ import org.springframework.web.bind.annotation.RestController
 class FeatureFlagController(
     private val requestFeatureFlagUsecase: RequestFeatureFlagUsecase
 ) {
+
+    @GetMapping("/list")
+    fun getFeatureFlagAllList(): BaseResponseDto<List<FeatureFlagResponse>> {
+        val response = requestFeatureFlagUsecase.getAllList()
+
+        return BaseResponseDto.success(
+            data = response
+        )
+    }
 
     @PostMapping("/create")
     fun createFeatureFlag(@RequestBody requestFeatureFlagCommand: RequestFeatureFlagCommand): BaseResponseDto<FeatureFlagResponse> {

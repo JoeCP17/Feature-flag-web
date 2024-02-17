@@ -20,6 +20,12 @@ class FeatureFlagPersistenceAdapter(
     }
 
     @Transactional(readOnly = true)
+    override fun getAll(): List<FeatureFlag> {
+        val featureFlagJpaEntityList = featureFlagJpaRepository.findAll()
+        return featureFlagJpaEntityList.map { FeatureFlagMapper.toDomain(it) }
+    }
+
+    @Transactional(readOnly = true)
     override fun findById(id: Long): FeatureFlag {
         val featureFlagJpaEntity = featureFlagJpaRepository.findById(id)
             .orElseThrow { throw IllegalArgumentException(NOT_FOUNR_MESSAGE) }

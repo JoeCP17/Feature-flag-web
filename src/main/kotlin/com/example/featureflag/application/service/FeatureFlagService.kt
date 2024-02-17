@@ -18,6 +18,20 @@ class FeatureFlagService(
     }
 
     @Transactional
+    override fun getAllList(): List<FeatureFlagResponse> {
+        val featureFlagList = featureFlagPersistencePort.getAll()
+
+        return featureFlagList.map {
+            FeatureFlagResponse(
+                id = it.id!!,
+                name = it.name,
+                active = it.active,
+                createdAt = it.createdAt!!
+            )
+        }
+    }
+
+    @Transactional
     override fun create(requestFeatureFlagCommand: RequestFeatureFlagCommand): FeatureFlagResponse {
         val requestFeatureFlag = requestFeatureFlagCommand.toDomainByName()
         val savedFeatureFlag = featureFlagPersistencePort.save(requestFeatureFlag)
