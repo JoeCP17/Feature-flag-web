@@ -64,10 +64,10 @@
 
   function toggleFeature(featureId) {
     $.ajax({
-      url: '/api/v1/feature-flag/' + featureId,
-      type: 'PUT', // or 'POST' if your API requires
+      url: '/api/v1/feature-flag/modify/active/' + featureId,
+      type: 'PATCH',
       success: function () {
-        fetchFeatureFlags(); // Reload the list
+        fetchFeatureFlags();
       },
       error: function () {
         alert('Feature flag toggle failed.');
@@ -77,10 +77,10 @@
 
   function deleteFeature(featureId) {
     $.ajax({
-      url: '/api/v1/delete/' + featureId,
+      url: '/api/v1/feature-flag/delete/' + featureId,
       type: 'DELETE',
       success: function () {
-        fetchFeatureFlags(); // Reload the list
+        fetchFeatureFlags();
       },
       error: function () {
         alert('Feature flag deletion failed.');
