@@ -1,4 +1,4 @@
-package com.example.featureflag.application.dto
+package com.example.featureflag.application.dto.request
 
 import com.example.featureflag.domain.member.Member
 

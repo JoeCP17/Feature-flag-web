@@ -1,8 +1,8 @@
 package com.example.featureflag.adapter.`in`.web.controller
 
 import com.example.featureflag.adapter.`in`.web.dto.BaseResponseDto
-import com.example.featureflag.application.dto.CreateMemberCommand
-import com.example.featureflag.application.dto.MemberResponse
+import com.example.featureflag.application.dto.request.CreateMemberCommand
+import com.example.featureflag.application.dto.response.MemberResponse
 import com.example.featureflag.application.port.`in`.RequestMemberUsecase
 import org.springframework.web.bind.annotation.*
 
@@ -19,7 +19,7 @@ class MemberController(
     }
 
     @PostMapping("/register", params = ["version=1.0"])
-    fun registerMember(@RequestBody command:CreateMemberCommand): BaseResponseDto<MemberResponse> {
+    fun registerMember(@RequestBody command: CreateMemberCommand): BaseResponseDto<MemberResponse> {
         val registerMember = requestMemberUsecase.registerMember(command)
         return BaseResponseDto.success(registerMember)
     }

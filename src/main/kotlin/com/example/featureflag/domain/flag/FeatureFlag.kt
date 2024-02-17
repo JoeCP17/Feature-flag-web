@@ -3,13 +3,19 @@ package com.example.featureflag.domain.flag
 import java.time.LocalDateTime
 
 class FeatureFlag(
+    val id: Long? = null,
     val name: String,
-    val active: Boolean = false,
-    val createdAt: LocalDateTime
+    val active: Boolean = true,
+    val createdAt: LocalDateTime? = null
 ) {
     private var activeFlag: Boolean = active
 
-    fun turnActiveTrue() {
-        activeFlag = true
-    }
+    fun statusUpdate(): FeatureFlag  = FeatureFlag(
+        id = this.id,
+        name = this.name,
+        active = !this.activeFlag,
+        createdAt = this.createdAt
+    )
+
+
 }

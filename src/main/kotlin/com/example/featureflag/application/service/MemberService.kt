@@ -1,7 +1,7 @@
 package com.example.featureflag.application.service
 
-import com.example.featureflag.application.dto.CreateMemberCommand
-import com.example.featureflag.application.dto.MemberResponse
+import com.example.featureflag.application.dto.request.CreateMemberCommand
+import com.example.featureflag.application.dto.response.MemberResponse
 import com.example.featureflag.application.port.`in`.RequestMemberUsecase
 import com.example.featureflag.application.port.out.MemberPersistencePort
 import jakarta.transaction.Transactional

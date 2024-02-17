@@ -1,4 +1,4 @@
-package com.example.featureflag.application.dto
+package com.example.featureflag.application.dto.response
 
 import java.time.LocalDateTime
 

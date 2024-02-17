@@ -1,0 +1,19 @@
+### Feature Flag 생성
+POST http://localhost:8080/api/v1/feature-flag/create
+Content-Type: application/json
+
+{
+    "name": "feature1"
+}
+
+### Feature Flag 수정
+PATCH http://localhost:8080/api/v1/feature-flag/modify/{{id}}
+Content-Type: application/json
+
+{
+    "name": "new_feature"
+}
+
+### Feature Flag 삭제
+DELETE http://localhost:8080/api/v1/feature-flag/delete/{{id}}
+Content-Type: application/json
