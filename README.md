@@ -31,3 +31,10 @@ Feature Flag API를 구현하는 예제이며 Member를 등록하는 서비스 A
   - name 
   - active
   - created_at
+
+# 구현 페이지 
+![base.png](image/base.png)
+
+Active가 true일 경우 현재 사용가능한 API를 나타낸다.
+
+Active가 false일 경우 현재 사용불가능한 API 나타낸다. 
